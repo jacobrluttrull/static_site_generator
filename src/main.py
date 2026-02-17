@@ -1,30 +1,21 @@
-from generate_pages_recursive import generate_pages_recursive
+import sys
 from textnode import TextNode, TextType
 from copy_directory import copy_directory
+from generate_pages_recursive import generate_pages_recursive
 
 def main():
-    # Copy static files to public directory
-    copy_directory("static", "public")
+    # Get basepath from command line, default to "/"
+    basepath = sys.argv[1] if len(sys.argv) > 1 else "/"
 
-    # Generate the HTML page
-    generate_pages_recursive("content", "template.html", "public")
+    # Copy static files to docs directory
+    copy_directory("static", "docs")
+
+    # Generate all pages recursively
+    generate_pages_recursive("content", "template.html", "docs", basepath)
 
     print("\n" + "="*50)
-    print("Testing TextNode:")
-    print("="*50 + "\n")
-
-    node1 = TextNode("This is a text node", TextType.TEXT)
-    node2 = TextNode("This is bold text", TextType.BOLD)
-    node3 = TextNode("Click here", TextType.LINK, "https://example.com")
-
-    print(node1)
-    print(node2)
-    print(node3)
-
-    # Test equality
-    node4 = TextNode("This is a text node", TextType.TEXT)
-    print(f"\nnode1 == node4: {node1 == node4}")
-    print(f"node1 == node2: {node1 == node2}")
+    print(f"Site generated successfully with basepath: {basepath}")
+    print("="*50)
 
 if __name__ == "__main__":
     main()
