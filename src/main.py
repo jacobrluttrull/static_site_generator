@@ -1,6 +1,18 @@
+from generate_pages_recursive import generate_pages_recursive
 from textnode import TextNode, TextType
+from copy_directory import copy_directory
 
 def main():
+    # Copy static files to public directory
+    copy_directory("static", "public")
+
+    # Generate the HTML page
+    generate_pages_recursive("content", "template.html", "public")
+
+    print("\n" + "="*50)
+    print("Testing TextNode:")
+    print("="*50 + "\n")
+
     node1 = TextNode("This is a text node", TextType.TEXT)
     node2 = TextNode("This is bold text", TextType.BOLD)
     node3 = TextNode("Click here", TextType.LINK, "https://example.com")
