@@ -26,17 +26,20 @@ Built as a guided project through [Boot.dev](https://www.boot.dev).
 ## Project Structure
 ```
 static_site_generator/
-├── content/           # Markdown source files
-├── static/            # CSS, images, and other static assets
-├── docs/              # Generated HTML output (deployed to GitHub Pages)
-├── src/               # Python source code
-│   ├── main.py
-│   ├── markdown_to_html_node.py
-│   ├── generate_page.py
-│   └── ...
-├── template.html      # HTML template
-├── build.sh          # Production build script
-└── main.sh           # Local development script
+├── content/              # Markdown source files
+├── static/               # CSS, images, and other static assets
+├── docs/                 # Generated HTML output (deployed to GitHub Pages)
+├── src/                  # Python source code
+│   ├── main.py           # Entry point
+│   ├── textnode.py       # TextNode class and TextType enum
+│   ├── htmlnode.py       # HTMLNode, LeafNode, ParentNode classes
+│   ├── inline_markdown.py  # All inline markdown processing (links, images, delimiters)
+│   ├── block_markdown.py   # All block-level markdown processing (headings, lists, etc.)
+│   ├── file_operations.py  # File copying, title extraction, page generation
+│   └── tests/            # Unit tests
+├── template.html         # HTML template
+├── build.sh              # Production build script
+└── main.sh               # Local development script
 ```
 
 ## Getting Started
@@ -96,14 +99,12 @@ GitHub Pages will automatically rebuild and deploy within 1-2 minutes.
 
 ## Testing
 
-This project uses the Boot.dev CLI for testing:
+Run the unit tests with:
 ```bash
-# Install Boot.dev CLI
-# https://github.com/bootdotdev/bootdev
-
-# Run tests
 ./test.sh
 ```
+
+Tests live in `src/tests/` and are discovered automatically by the test runner.
 
 ## License
 
