@@ -1,11 +1,4 @@
-def markdown_to_blocks(markdown):
-    blocks = markdown.split("\n\n")
+# Re-export shim – implementation lives in block_markdown.py
+from block_markdown import markdown_to_blocks
 
-    cleaned_blocks = []
-
-    for block in blocks:
-        stripped_block = block.strip()
-        if stripped_block:
-            cleaned_blocks.append(stripped_block)
-
-    return cleaned_blocks
+__all__ = ["markdown_to_blocks"]

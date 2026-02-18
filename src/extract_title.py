@@ -1,9 +1,4 @@
-def extract_title(markdown):
-    lines = markdown.split("\n")
+# Re-export shim – implementation lives in file_operations.py
+from file_operations import extract_title
 
-    for line in lines:
-        stripped = line.strip()
-        if stripped.startswith("# "):
-            return stripped[2:].strip()
-    raise Exception("No h1 header found in markdown"
-                    )
+__all__ = ["extract_title"]
